@@ -7,5 +7,6 @@ target 'Instagraammm' do
 
   # Pods for Instagraammm
   pod 'Parse'
+  pod 'Parse/UI'
 
 end

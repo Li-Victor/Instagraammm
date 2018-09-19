@@ -14,6 +14,7 @@
 		570CCC372151EDC200896D9C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CCC362151EDC200896D9C /* LoginViewController.swift */; };
 		570CCC392151F03F00896D9C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CCC382151F03F00896D9C /* Keys.swift */; };
 		5715711121529F3A0071232A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5715711021529F3A0071232A /* Post.swift */; };
+		5753A0C72152F86200B2CD9A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753A0C62152F86200B2CD9A /* PostCell.swift */; };
 		57F252842151F1D500D18FEE /* KeysSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F252832151F1D500D18FEE /* KeysSample.swift */; };
 		57F252862151F33900D18FEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F252852151F33900D18FEE /* HomeViewController.swift */; };
 		A1A2071C8C839B1FFEC4FE7E /* Pods_Instagraammm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3091BB4A2C4D597A303452D2 /* Pods_Instagraammm.framework */; };
@@ -31,6 +32,7 @@
 		570CCC362151EDC200896D9C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		570CCC382151F03F00896D9C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		5715711021529F3A0071232A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		5753A0C62152F86200B2CD9A /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		57F252832151F1D500D18FEE /* KeysSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSample.swift; sourceTree = "<group>"; };
 		57F252852151F33900D18FEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		97737BE73ED324F2896A89F0 /* Pods-Instagraammm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagraammm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagraammm/Pods-Instagraammm.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		570CCC222151ECCD00896D9C /* Instagraammmm */ = {
 			isa = PBXGroup;
 			children = (
+				5753A0C52152F82B00B2CD9A /* Views */,
 				5715710F21529F200071232A /* Models */,
 				570CCC352151EDAE00896D9C /* View Controllers */,
 				570CCC232151ECCD00896D9C /* AppDelegate.swift */,
@@ -98,6 +101,14 @@
 				5715711021529F3A0071232A /* Post.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5753A0C52152F82B00B2CD9A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5753A0C62152F86200B2CD9A /* PostCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		645E69F8D5EC0BCFD87E81F9 /* Frameworks */ = {
@@ -231,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5753A0C72152F86200B2CD9A /* PostCell.swift in Sources */,
 				57F252862151F33900D18FEE /* HomeViewController.swift in Sources */,
 				570CCC372151EDC200896D9C /* LoginViewController.swift in Sources */,
 				57F252842151F1D500D18FEE /* KeysSample.swift in Sources */,
