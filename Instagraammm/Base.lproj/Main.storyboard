@@ -78,6 +78,14 @@
                                     <action selector="onLogout:" destination="uAu-3t-cfp" eventType="touchUpInside" id="c7R-pZ-nEa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD1-7h-cTr">
+                                <rect key="frame" x="91" y="178" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take Photo"/>
+                                <connections>
+                                    <action selector="onTakePhoto:" destination="uAu-3t-cfp" eventType="touchUpInside" id="0wN-VP-40y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="MIG-lI-5za"/>
