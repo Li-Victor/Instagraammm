@@ -34,12 +34,32 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         // Get the image captured by the UIImagePickerController
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
-        // Do something with the images (based on your use case)
+        let resizedImage = resize(image: originalImage, newSize: CGSize(width: 300, height: 300))
         
-        // Dismiss UIImagePickerController to go back to your original view controller
-        dismiss(animated: true, completion: nil)
+        Post.postUserImage(image: resizedImage, withCaption: "ride or die") { (success: Bool, error: Error?) in
+            if success {
+                print("successfully posted image")
+                // Dismiss UIImagePickerController to go back to your original view controller
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print(error?.localizedDescription ?? "")
+            }
+        }
+        
+        
+    }
+    
+    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+        let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        resizeImageView.contentMode = UIViewContentMode.scaleAspectFill
+        resizeImageView.image = image
+        
+        UIGraphicsBeginImageContext(resizeImageView.frame.size)
+        resizeImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
     override func viewDidLoad() {
