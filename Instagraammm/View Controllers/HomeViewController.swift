@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import Parse
 
-class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var homeFeedNavItem: UINavigationItem!
+    @IBOutlet private weak var homeFeedNavItem: UINavigationItem!
+    
+    @IBOutlet private weak var tableView: UITableView!
+    private var refreshControl: UIRefreshControl!
+    
+    var posts: [Post] = [] {
+        didSet {
+            tableView.reloadData()
+            refreshControl.endRefreshing()
+        }
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // Get the image captured by the UIImagePickerController
@@ -22,6 +33,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             if success {
                 print("successfully posted image")
                 // Dismiss UIImagePickerController to go back to your original view controller
+                self.fetchPosts()
                 self.dismiss(animated: true, completion: nil)
             } else {
                 print(error?.localizedDescription ?? "")
@@ -29,7 +41,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+    private func resize(image: UIImage, newSize: CGSize) -> UIImage {
         let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
         resizeImageView.contentMode = UIViewContentMode.scaleAspectFill
         resizeImageView.image = image
@@ -41,11 +53,26 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return newImage
     }
     
-    @objc func onLogout() {
+    private func fetchPosts() {
+        // construct query
+        
+        let query = Post.query()!
+        query.limit = 20
+        
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if error == nil {
+                if let posts = objects as? [Post] {
+                    self.posts = posts
+                }
+            }
+        }
+    }
+    
+    @objc private func onLogout() {
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
     
-    @objc func takePhoto() {
+    @objc private func takePhoto() {
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
@@ -60,8 +87,26 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.present(vc, animated: true, completion: nil)
     }
     
+    @objc private func didPullToRefresh() {
+        fetchPosts()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
+        
+        cell.instagramPost = posts[indexPath.row]
+        return cell
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         // set up nav bar
         let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(HomeViewController.onLogout))
@@ -70,7 +115,14 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
         homeFeedNavItem.leftBarButtonItem = logoutBarButtonItem
         homeFeedNavItem.rightBarButtonItem = takePhotoBarButtonItem
-        // Do any additional setup after loading the view.
+        
+        // add refresh control on top of tableView
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(HomeViewController.didPullToRefresh), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        // fetch items for table view
+        fetchPosts()
     }
 
     override func didReceiveMemoryWarning() {
