@@ -11,7 +11,7 @@ import Parse
 
 class Post: PFObject, PFSubclassing {
     @NSManaged var media: PFFile
-    @NSManaged var author: PFUser
+    @NSManaged var authorUsername: String
     @NSManaged var caption: String
     @NSManaged var likesCount: Int
     @NSManaged var commentsCount: Int
@@ -37,7 +37,8 @@ class Post: PFObject, PFSubclassing {
         let post = Post()
         
         post.media = getPFFileFromImage(image)!
-        post.author = PFUser.current()!
+        post.authorUsername = PFUser.current()!.username!
+        
         post.caption = caption
         post.likesCount = 0
         post.commentsCount = 0
