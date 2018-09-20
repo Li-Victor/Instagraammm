@@ -19,6 +19,7 @@ class PostCell: UITableViewCell {
             self.postImageView.loadInBackground()
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
