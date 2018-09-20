@@ -6,20 +6,24 @@ PODS:
     - Bolts/Tasks (~> 1.9)
   - Parse/UI (1.17.1):
     - Parse/Core
+  - PKHUD (5.1.0)
 
 DEPENDENCIES:
   - Parse
   - Parse/UI
+  - PKHUD (~> 5.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
     - Parse
+    - PKHUD
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
+  PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
 
-PODFILE CHECKSUM: 97cb13a40831bdafe0a753325bb65e85c0240d35
+PODFILE CHECKSUM: ff12716170685219f7328ef448f941ac3d4f5f29
 
 COCOAPODS: 1.5.3

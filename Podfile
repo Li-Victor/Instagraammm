@@ -8,5 +8,6 @@ target 'Instagraammm' do
   # Pods for Instagraammm
   pod 'Parse'
   pod 'Parse/UI'
+  pod 'PKHUD', '~> 5.0'
 
 end

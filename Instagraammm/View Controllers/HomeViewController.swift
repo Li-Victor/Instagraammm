@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PKHUD
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
 
@@ -19,6 +20,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var posts: [Post] = [] {
         didSet {
             tableView.reloadData()
+            PKHUD.sharedHUD.hide(afterDelay: 0.2)
             refreshControl.endRefreshing()
         }
     }
@@ -29,6 +31,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let resizedImage = resize(image: originalImage, newSize: CGSize(width: 300, height: 300))
         self.dismiss(animated: true, completion: nil)
+        
+        // show HUD
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show(onView: tableView)
+        
         Post.postUserImage(image: resizedImage, withCaption: "ride or die") { (success: Bool, error: Error?) in
             if success {
                 print("successfully posted image")
@@ -56,6 +63,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let query = Post.query()!
         query.limit = 20
         query.addDescendingOrder("createdAt")
+        
+        // show HUD
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show(onView: tableView)
         
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             if error == nil {
