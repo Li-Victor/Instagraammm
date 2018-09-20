@@ -56,6 +56,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     private func fetchPosts() {
         let query = Post.query()!
         query.limit = 20
+        query.addDescendingOrder("createdAt")
         
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             if error == nil {
