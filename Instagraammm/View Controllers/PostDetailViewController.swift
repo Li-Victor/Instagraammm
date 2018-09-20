@@ -25,7 +25,6 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         postImageView.file = instagramPost.media
-        postImageView.loadInBackground()
         
         // get description
         let authorUsername = instagramPost.authorUsername

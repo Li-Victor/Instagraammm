@@ -28,13 +28,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         let resizedImage = resize(image: originalImage, newSize: CGSize(width: 300, height: 300))
-        
+        self.dismiss(animated: true, completion: nil)
         Post.postUserImage(image: resizedImage, withCaption: "ride or die") { (success: Bool, error: Error?) in
             if success {
                 print("successfully posted image")
                 // Dismiss UIImagePickerController to go back to your original view controller
                 self.fetchPosts()
-                self.dismiss(animated: true, completion: nil)
             } else {
                 print(error?.localizedDescription ?? "")
             }
