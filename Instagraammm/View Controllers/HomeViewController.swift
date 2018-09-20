@@ -54,10 +54,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     private func fetchPosts() {
-        // construct query
-        
         let query = Post.query()!
         query.limit = 20
+        query.addDescendingOrder("createdAt")
         
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             if error == nil {
@@ -100,6 +99,15 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         cell.instagramPost = posts[indexPath.row]
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            let post = posts[indexPath.row]
+            let postDetailViewController = segue.destination as! PostDetailViewController
+            postDetailViewController.instagramPost = post
+        }
     }
     
     override func viewDidLoad() {
