@@ -11,8 +11,6 @@ import Parse
 import PKHUD
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
-
-    @IBOutlet private weak var homeFeedNavItem: UINavigationItem!
     
     @IBOutlet private weak var tableView: UITableView!
     private var refreshControl: UIRefreshControl!
@@ -78,6 +76,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @objc private func onLogout() {
+        print("logout")
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
     
@@ -127,12 +126,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.tableView.delegate = self
         
         // set up nav bar
-        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(HomeViewController.onLogout))
-        
-        let takePhotoBarButtonItem = UIBarButtonItem(image: UIImage(named: "insta_camera_btn"), style: .plain, target: nil, action: #selector(HomeViewController.takePhoto))
+//        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(HomeViewController.onLogout))
 
-        homeFeedNavItem.leftBarButtonItem = logoutBarButtonItem
-        homeFeedNavItem.rightBarButtonItem = takePhotoBarButtonItem
+//        let takePhotoBarButtonItem = UIBarButtonItem(image: UIImage(named: "insta_camera_btn"), style: .plain, target: nil, action: #selector(HomeViewController.takePhoto))
+
+//        homeFeedNavItem.leftBarButtonItem = logoutBarButtonItem
+//        homeFeedNavItem.rightBarButtonItem = takePhotoBarButtonItem
         
         // add refresh control on top of tableView
         refreshControl = UIRefreshControl()

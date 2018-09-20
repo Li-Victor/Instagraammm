@@ -33,7 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // check if user is logged in.
         if PFUser.current() != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+            
+            window?.rootViewController = tabBarController
+//            window?.makeKeyAndVisible()
         }
         return true
     }
