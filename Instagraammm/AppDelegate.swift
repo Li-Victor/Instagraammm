@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let tabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             
             window?.rootViewController = tabBarController
-//            window?.makeKeyAndVisible()
         }
         return true
     }

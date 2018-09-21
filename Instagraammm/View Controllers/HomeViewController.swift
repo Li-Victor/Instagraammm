@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import PKHUD
 
-class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet private weak var tableView: UITableView!
     private var refreshControl: UIRefreshControl!
@@ -21,40 +21,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             PKHUD.sharedHUD.hide(afterDelay: 0.2)
             refreshControl.endRefreshing()
         }
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // Get the image captured by the UIImagePickerController
-        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        let resizedImage = resize(image: originalImage, newSize: CGSize(width: 300, height: 300))
-        self.dismiss(animated: true, completion: nil)
-        
-        // show HUD
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        PKHUD.sharedHUD.show(onView: tableView)
-        
-        Post.postUserImage(image: resizedImage, withCaption: "ride or die") { (success: Bool, error: Error?) in
-            if success {
-                print("successfully posted image")
-                // Dismiss UIImagePickerController to go back to your original view controller
-                self.fetchPosts()
-            } else {
-                print(error?.localizedDescription ?? "")
-            }
-        }
-    }
-    
-    private func resize(image: UIImage, newSize: CGSize) -> UIImage {
-        let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
-        resizeImageView.contentMode = UIViewContentMode.scaleAspectFill
-        resizeImageView.image = image
-        
-        UIGraphicsBeginImageContext(resizeImageView.frame.size)
-        resizeImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
     }
     
     private func fetchPosts() {
@@ -78,21 +44,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @objc private func onLogout() {
         print("logout")
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
-    }
-    
-    @objc private func takePhoto() {
-        let vc = UIImagePickerController()
-        vc.delegate = self
-        vc.allowsEditing = true
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            print("Camera is available 📸")
-            vc.sourceType = .camera
-        } else {
-            print("Camera 🚫 available so we will use photo library instead")
-            vc.sourceType = .photoLibrary
-        }
-        
-        self.present(vc, animated: true, completion: nil)
     }
     
     @objc private func didPullToRefresh() {
@@ -124,14 +75,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-        // set up nav bar
-//        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(HomeViewController.onLogout))
-
-//        let takePhotoBarButtonItem = UIBarButtonItem(image: UIImage(named: "insta_camera_btn"), style: .plain, target: nil, action: #selector(HomeViewController.takePhoto))
-
-//        homeFeedNavItem.leftBarButtonItem = logoutBarButtonItem
-//        homeFeedNavItem.rightBarButtonItem = takePhotoBarButtonItem
         
         // add refresh control on top of tableView
         refreshControl = UIRefreshControl()

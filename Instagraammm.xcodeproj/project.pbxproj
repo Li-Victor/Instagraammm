@@ -16,6 +16,7 @@
 		5715711121529F3A0071232A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5715711021529F3A0071232A /* Post.swift */; };
 		5753A0C72152F86200B2CD9A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753A0C62152F86200B2CD9A /* PostCell.swift */; };
 		5753A0C921530E2E00B2CD9A /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753A0C821530E2E00B2CD9A /* PostDetailViewController.swift */; };
+		577FDF012154C3DD0046A995 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577FDF002154C3DD0046A995 /* NewPostViewController.swift */; };
 		57F252842151F1D500D18FEE /* KeysSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F252832151F1D500D18FEE /* KeysSample.swift */; };
 		57F252862151F33900D18FEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F252852151F33900D18FEE /* HomeViewController.swift */; };
 		A1A2071C8C839B1FFEC4FE7E /* Pods_Instagraammm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3091BB4A2C4D597A303452D2 /* Pods_Instagraammm.framework */; };
@@ -35,6 +36,7 @@
 		5715711021529F3A0071232A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		5753A0C62152F86200B2CD9A /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		5753A0C821530E2E00B2CD9A /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		577FDF002154C3DD0046A995 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		57F252832151F1D500D18FEE /* KeysSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSample.swift; sourceTree = "<group>"; };
 		57F252852151F33900D18FEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		97737BE73ED324F2896A89F0 /* Pods-Instagraammm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagraammm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagraammm/Pods-Instagraammm.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				570CCC362151EDC200896D9C /* LoginViewController.swift */,
 				57F252852151F33900D18FEE /* HomeViewController.swift */,
 				5753A0C821530E2E00B2CD9A /* PostDetailViewController.swift */,
+				577FDF002154C3DD0046A995 /* NewPostViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				57F252862151F33900D18FEE /* HomeViewController.swift in Sources */,
 				570CCC372151EDC200896D9C /* LoginViewController.swift in Sources */,
 				57F252842151F1D500D18FEE /* KeysSample.swift in Sources */,
+				577FDF012154C3DD0046A995 /* NewPostViewController.swift in Sources */,
 				5715711121529F3A0071232A /* Post.swift in Sources */,
 				570CCC392151F03F00896D9C /* Keys.swift in Sources */,
 				570CCC242151ECCD00896D9C /* AppDelegate.swift in Sources */,
