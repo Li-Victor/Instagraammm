@@ -41,11 +41,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    @objc private func onLogout() {
-        print("logout")
-        NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
-    }
-    
     @objc private func didPullToRefresh() {
         fetchPosts()
     }
