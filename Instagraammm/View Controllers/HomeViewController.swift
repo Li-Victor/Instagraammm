@@ -19,14 +19,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var posts: [Post] = [] {
         didSet {
             tableView.reloadData()
-            PKHUD.sharedHUD.hide(afterDelay: 0.2)
-            refreshControl.endRefreshing()
         }
     }
     
+    var isMoreDataLoading = false
+    var loadingMorePostsActivityView: InfiniteScrollActivityView?
+    
     private func fetchPosts() {
         let query = Post.query()!
-        query.limit = 20
+        query.limit = 2
+        query.skip = posts.count
         query.addDescendingOrder("createdAt")
         
         // show HUD
@@ -34,9 +36,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         PKHUD.sharedHUD.show(onView: tableView)
         
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            
+            self.isMoreDataLoading = false
+            self.loadingMorePostsActivityView?.stopAnimating()
+            PKHUD.sharedHUD.hide(afterDelay: 0.2)
+            self.refreshControl.endRefreshing()
             if error == nil {
-                if let posts = objects as? [Post] {
-                    self.posts = posts
+                if let posts = objects as? [Post], posts.count > 0 {
+                    self.posts += posts
                 }
             }
         }
@@ -92,6 +99,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !isMoreDataLoading {
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                isMoreDataLoading = true
+                
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+                loadingMorePostsActivityView?.frame = frame
+                loadingMorePostsActivityView!.startAnimating()
+                
+                fetchPosts()
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell) {
@@ -111,6 +137,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(HomeViewController.didPullToRefresh), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
+        
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        loadingMorePostsActivityView = InfiniteScrollActivityView(frame: frame)
+        loadingMorePostsActivityView!.isHidden = true
+        tableView.addSubview(loadingMorePostsActivityView!)
         
         // fetch items for table view
         fetchPosts()
