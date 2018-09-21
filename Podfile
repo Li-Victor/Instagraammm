@@ -9,5 +9,6 @@ target 'Instagraammm' do
   pod 'Parse'
   pod 'Parse/UI'
   pod 'PKHUD', '~> 5.0'
+  pod 'AlamofireImage', '~> 3.3'
 
 end

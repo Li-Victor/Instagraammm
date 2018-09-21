@@ -12,11 +12,20 @@ import Parse
 class PostCell: UITableViewCell {
 
     @IBOutlet weak var postImageView: PFImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var instagramPost: Post! {
         didSet {
-            self.postImageView.file = instagramPost.media
-            self.postImageView.loadInBackground()
+            postImageView.file = instagramPost.media
+            postImageView.loadInBackground()
+            
+            usernameLabel.text = PFUser.current()!.username!
+            
+            captionLabel.text = instagramPost.caption
+            
+            dateLabel.text = instagramPost.date
         }
     }
 

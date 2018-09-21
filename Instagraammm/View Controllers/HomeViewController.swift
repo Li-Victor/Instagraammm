@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import PKHUD
+import AlamofireImage
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -45,21 +46,56 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         fetchPosts()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        headerView.backgroundColor = UIColor(white: 1, alpha: 0.9)
+        
+        let profileView = UIImageView(frame: CGRect(x: 10, y: 10, width: 30, height: 30))
+        profileView.clipsToBounds = true
+        profileView.layer.cornerRadius = 15;
+        profileView.layer.borderColor = UIColor(white: 0.7, alpha: 0.8).cgColor
+        profileView.layer.borderWidth = 1;
+        
+        let username = PFUser.current()!.username!
+        
+        // Set the avatar
+        profileView.af_setImage(withURL: URL(string: "https://api.adorable.io/avatars/30/\(username)")!)
+        headerView.addSubview(profileView)
+        
+        let postLabel = UILabel(frame: CGRect(x: 50, y: 10, width: 270, height: 30))
+        postLabel.text = username
+        headerView.addSubview(postLabel)
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
         
-        cell.instagramPost = posts[indexPath.row]
+        cell.instagramPost = posts[indexPath.section]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell) {
-            let post = posts[indexPath.row]
+            let post = posts[indexPath.section]
             let postDetailViewController = segue.destination as! PostDetailViewController
             postDetailViewController.instagramPost = post
         }
