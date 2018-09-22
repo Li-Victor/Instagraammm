@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private func fetchPosts() {
         let query = Post.query()!
-        query.limit = 2
+        query.limit = 5
         query.skip = posts.count
         query.addDescendingOrder("createdAt")
         
@@ -71,7 +71,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         profileView.layer.borderColor = UIColor(white: 0.7, alpha: 0.8).cgColor
         profileView.layer.borderWidth = 1;
         
-        let username = PFUser.current()!.username!
+        let username = posts[section].authorUsername
         
         // Set the avatar
         profileView.af_setImage(withURL: URL(string: "https://api.adorable.io/avatars/30/\(username)")!)
