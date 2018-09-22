@@ -18,6 +18,7 @@
 		5753A0C921530E2E00B2CD9A /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753A0C821530E2E00B2CD9A /* PostDetailViewController.swift */; };
 		575BE70F2155473500550646 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575BE70E2155473500550646 /* ProfileViewController.swift */; };
 		575BE71121559E4900550646 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575BE71021559E4900550646 /* InfiniteScrollActivityView.swift */; };
+		575BE7152156110C00550646 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575BE7142156110C00550646 /* UserCollectionViewCell.swift */; };
 		577FDF012154C3DD0046A995 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577FDF002154C3DD0046A995 /* NewPostViewController.swift */; };
 		57F252842151F1D500D18FEE /* KeysSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F252832151F1D500D18FEE /* KeysSample.swift */; };
 		57F252862151F33900D18FEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F252852151F33900D18FEE /* HomeViewController.swift */; };
@@ -40,6 +41,7 @@
 		5753A0C821530E2E00B2CD9A /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		575BE70E2155473500550646 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		575BE71021559E4900550646 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
+		575BE7142156110C00550646 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		577FDF002154C3DD0046A995 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		57F252832151F1D500D18FEE /* KeysSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSample.swift; sourceTree = "<group>"; };
 		57F252852151F33900D18FEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				5753A0C62152F86200B2CD9A /* PostCell.swift */,
 				575BE71021559E4900550646 /* InfiniteScrollActivityView.swift */,
+				575BE7142156110C00550646 /* UserCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				57F252842151F1D500D18FEE /* KeysSample.swift in Sources */,
 				577FDF012154C3DD0046A995 /* NewPostViewController.swift in Sources */,
 				5715711121529F3A0071232A /* Post.swift in Sources */,
+				575BE7152156110C00550646 /* UserCollectionViewCell.swift in Sources */,
 				570CCC392151F03F00896D9C /* Keys.swift in Sources */,
 				570CCC242151ECCD00896D9C /* AppDelegate.swift in Sources */,
 			);
