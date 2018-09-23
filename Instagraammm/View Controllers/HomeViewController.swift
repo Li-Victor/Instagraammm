@@ -25,15 +25,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var isMoreDataLoading = false
     var loadingMorePostsActivityView: InfiniteScrollActivityView?
     
-    private func fetchPosts() {
+    private func fetchPosts(displayHUD: Bool = true) {
         let query = Post.query()!
         query.limit = 5
         query.skip = posts.count
         query.addDescendingOrder("createdAt")
         
         // show HUD
-        PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        PKHUD.sharedHUD.show(onView: tableView)
+        if displayHUD {
+            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            PKHUD.sharedHUD.show(onView: tableView)
+        }
+        
         
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             
@@ -82,7 +85,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 loadingMorePostsActivityView?.frame = frame
                 loadingMorePostsActivityView!.startAnimating()
                 
-                fetchPosts()
+                fetchPosts(displayHUD: false)
             }
         }
     }
@@ -101,6 +104,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        tableView.separatorStyle = .none
         
         // add refresh control on top of tableView
         refreshControl = UIRefreshControl()
