@@ -11,6 +11,7 @@ import Parse
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
@@ -18,7 +19,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     
     @IBAction func onSignIn(_ sender: Any) {
+        
+        indicator.isHidden = false
         PFUser.logInWithUsername(inBackground: usernameField.text!, password: passwordField.text!) { (user: PFUser?, error: Error?) in
+            self.indicator.isHidden = true
             if user != nil {
                 self.performSegue(withIdentifier: "goToHomeSegue", sender: nil)
             }
@@ -28,9 +32,12 @@ class LoginViewController: UIViewController {
     @IBAction func onSignUp(_ sender: Any) {
         let newUser = PFUser()
         
+        indicator.isHidden = false
+        
         newUser.username = usernameField.text
         newUser.password = passwordField.text
         newUser.signUpInBackground { (success: Bool, error: Error?) in
+            self.indicator.isHidden = true
             if success {
                 print("created a new user")
             } else {
