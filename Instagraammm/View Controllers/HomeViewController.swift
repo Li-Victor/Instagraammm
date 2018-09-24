@@ -13,6 +13,7 @@ import AlamofireImage
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var homeNavBar: UINavigationItem!
     @IBOutlet private weak var tableView: UITableView!
     private var refreshControl: UIRefreshControl!
     

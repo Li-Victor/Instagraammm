@@ -20,6 +20,7 @@
 		575BE71121559E4900550646 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575BE71021559E4900550646 /* InfiniteScrollActivityView.swift */; };
 		575BE7152156110C00550646 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575BE7142156110C00550646 /* UserCollectionViewCell.swift */; };
 		577FDF012154C3DD0046A995 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577FDF002154C3DD0046A995 /* NewPostViewController.swift */; };
+		57E534D4215831960037CBFA /* Billabong (Instagram).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57E534D3215831950037CBFA /* Billabong (Instagram).ttf */; };
 		57F252842151F1D500D18FEE /* KeysSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F252832151F1D500D18FEE /* KeysSample.swift */; };
 		57F252862151F33900D18FEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F252852151F33900D18FEE /* HomeViewController.swift */; };
 		A1A2071C8C839B1FFEC4FE7E /* Pods_Instagraammm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3091BB4A2C4D597A303452D2 /* Pods_Instagraammm.framework */; };
@@ -43,6 +44,7 @@
 		575BE71021559E4900550646 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		575BE7142156110C00550646 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		577FDF002154C3DD0046A995 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		57E534D3215831950037CBFA /* Billabong (Instagram).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Billabong (Instagram).ttf"; path = "../../../../../Downloads/Billabong (Instagram).ttf"; sourceTree = "<group>"; };
 		57F252832151F1D500D18FEE /* KeysSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysSample.swift; sourceTree = "<group>"; };
 		57F252852151F33900D18FEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		97737BE73ED324F2896A89F0 /* Pods-Instagraammm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagraammm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagraammm/Pods-Instagraammm.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 		570CCC172151ECCD00896D9C = {
 			isa = PBXGroup;
 			children = (
+				5751F3C92158312900750FAF /* Font */,
 				570CCC222151ECCD00896D9C /* Instagraammmm */,
 				570CCC212151ECCD00896D9C /* Products */,
 				81DC7E8003572C1861581456 /* Pods */,
@@ -114,6 +117,14 @@
 				5715711021529F3A0071232A /* Post.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5751F3C92158312900750FAF /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				57E534D3215831950037CBFA /* Billabong (Instagram).ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		5753A0C52152F82B00B2CD9A /* Views */ = {
@@ -205,6 +216,7 @@
 			files = (
 				570CCC2E2151ECCE00896D9C /* LaunchScreen.storyboard in Resources */,
 				570CCC2B2151ECCE00896D9C /* Assets.xcassets in Resources */,
+				57E534D4215831960037CBFA /* Billabong (Instagram).ttf in Resources */,
 				570CCC292151ECCD00896D9C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
